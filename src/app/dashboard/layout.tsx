@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
-import NavBar from "@/component/navBar";
+import Link from "next/link";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -19,18 +18,25 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({
-  children,
+  children, orders, profit, sales,
 }: Readonly<{
   children: React.ReactNode;
+  orders: React.ReactNode;
+  profit: React.ReactNode;
+  sales: React.ReactNode;
 }>) {
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable}  antialiased`}
       >
-        <div className="mb-3"> <NavBar/></div>
-          
-<div className="container mx-auto text-center px-4">
+        <div className="text-center py-3"><Link href="/dashboard/details"> Go To Order Details </Link></div>
+        <div className="flex gap-3 my-3 justify-center">
+          {orders}
+          {profit}
+          {sales}
+        </div>
+        <div className="text-center">
         {children}
         </div>
       </body>
